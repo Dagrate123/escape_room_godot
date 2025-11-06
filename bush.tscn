@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cokggchhtmsbc"]
+
+[ext_resource type="Texture2D" uid="uid://dgeeif8l05xf2" path="res://treeGreen_large.png" id="1_8cy4n"]
+[ext_resource type="Script" uid="uid://b4va57ukyxlpg" path="res://bush.gd" id="1_28u5p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8cy4n"]
+radius = 49.20366
+
+[node name="Bush" type="Node2D" groups=["dropable"]]
+script = ExtResource("1_28u5p")
+
+[node name="TreeGreenLarge" type="Sprite2D" parent="."]
+position = Vector2(273.5, 133.5)
+scale = Vector2(1.4531249, 1.4531249)
+texture = ExtResource("1_8cy4n")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(276, 133)
+shape = SubResource("CircleShape2D_8cy4n")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="change_cursor_hand"]
+[connection signal="mouse_exited" from="Area2D" to="." method="change_cursor_back"]
